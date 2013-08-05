@@ -1,5 +1,5 @@
 # Opens text file "3038html.txt" and prints out ODL_cas# and pubchem_id (if it exists), 1 set per line
-# Based on link with cgi and ending with .gz and being odorant (not receptor) 
+# Based on link with http and ending with .gz and being odorant (not receptor) for ODL_cas#, and cgi for pubchem_id
 '''
 ODL00000001_100-06-1	7476
 ODL00000002_100-09-4	7478
