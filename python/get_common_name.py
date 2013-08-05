@@ -1,6 +1,13 @@
 #!/usr/bin/env python
-# Opens a file called "pubchemid_sites.txt" in the same directory 
-# opens all sites of that list, and extracts compound name and prints
+# Opens a file called "pubchemid_sites.txt" in the same directory. 
+# opens all sites of that list, and extracts compound name 
+# and prints the pubchem ID then a tab then the common name
+'''
+5365976	allyl alpha-ionone
+21149427	CAMPHOLENE ACETATE
+643779	citral
+7720	2-ethylhexanol
+'''
 import re
 import urllib2
 
