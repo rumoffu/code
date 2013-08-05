@@ -1,38 +1,43 @@
 Working from the website http://mdl.shsmu.edu.cn/ODORactor/module/browse/browse.jsp
 we wanted to get all odorant (ligand) molecules.  Because of the poor web design format, we
-manually copied the html source from the 61 tabs of odorant molecules into the file
+manually copied the html source from the 61 tabs of odorant molecules 
+(using internet explorer get link report and view page source) into the file
 odoractorhtml_3038 which I fixed into 3038html.txt (see "Bonus" exercise at the bottom).
 
-The goals were to: 
-1) get a list of links to download all 3038 odorant mol.gz files,
-2) get a tab separated list to link the 3038 ODL_cas# to their pubchem_id
-3) get a tab separated list to link the pubchem_id to their common_name
+The goals were to use 3038html.txt (the html source from link reports of the odoractor site): 
+1) get a list of links to download all 3038 odorant mol.gz files 
+(to download all using wget and shell scripting http://www.freeos.com/guides/lsst/index.html 
+- or just python subprocess it)
+2) get a tab separated list to link the 3038 ODL_cas# to their pubchem_id (some don't have pubchem_id)
+3) get a tab separated list to link the pubchem_id to their common_name 
+(requires using web search / html parsing and the base link 
+http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid= [plus the pubchem_id] )
 
-1) odor_links.py
-# Opens text file "3038html.txt" and extracts ODL file names
-# Based on link starting with http and ending with .gz 
+
+goal 1) print a list of links to get mol.gz file --- odor_links.py does it
+example usage: $ python odor_links.py > gz_links.txt
+# Opens text file "3038html.txt" and prints out ODL file names, 1 per line
+# Based on link starting with http and ending with .gz and being odorant (not receptor) 
 '''
-ODL00000001_100-06-1.mol.gz
-ODL00000002_100-09-4.mol.gz
-ODL00000003_100-42-5.mol.gz
-ODL00000004_100-46-9.mol.gz
+http://mdl.shsmu.edu.cn/ODORCommon/datasource/odorant/mol/ODL00000001_100-06-1.mol.gz
+http://mdl.shsmu.edu.cn/ODORCommon/datasource/odorant/mol/ODL00000002_100-09-4.mol.gz
+http://mdl.shsmu.edu.cn/ODORCommon/datasource/odorant/mol/ODL00000003_100-42-5.mol.gz
 '''
 
 
-1) take links and links2 and extract pubChem ID
-(from http://mdl.shsmu.edu.cn/ODORactor/module/browse/browse.jsp)
-all in odoractorhtml_3038 --- modify odor_links.py to print ODL# and pubChem
-odl_pubchem.py will do it
-actually get_id.py does it..
+goal 2) print a list of ODL_cas# \t pubchem_id --- get_id.py does it
+example usage: $ python get_id.py > odl_pubchemid.txt
+# Opens text file "3038html.txt" and prints out ODL_cas# and pubchem_id (if it exists), 1 per line
+# Based on link with cgi and ending with .gz and being odorant (not receptor) 
+'''
+ODL00000001_100-06-1    7476
+ODL00000002_100-09-4    7478
+ODL00000003_100-42-5    7501
+'''
 
+goal 3) print a list of pubchem_id \t common_name
+step 1. build list to have all pubchem id
 
-sirus@sirus-VirtualBox:~/research/html_parse$ python get_id.py > ODL_pubchem.txt
-
-ODL_pubchem.txt
-ODL- CAS# \t pubchemid
-7370-92-5    110977
-
-2) build list to have all pubchem id
 pubchemid_only.py 
 # Opens ODL_pubchem.txt that has ODL# \t pubchemid
 # will print out pubchemid
