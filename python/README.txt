@@ -1,8 +1,15 @@
-odor_links.py opens list2 and prints out all 
-http://mdl.shsmu.edu.cn/ODORCommon/datasource/odorant/mol/ODL00002600_7492-39-9.mol.gz
+Working from the website http://mdl.shsmu.edu.cn/ODORactor/module/browse/browse.jsp
+we wanted to get all odorant (ligand) molecules.  Because of the poor web design format, we
+manually copied the html source from the 61 tabs of odorant molecules into the file
+odoractorhtml_3038 which I fixed into 3038html.txt (see "Bonus" exercise at the bottom).
+
+The goals were to: 
+1) get a list of links to download all 3038 odorant mol.gz files,
+2) get a tab separated list to link the 3038 ODL_cas# to their pubchem_id
+3) get a tab separated list to link the pubchem_id to their common_name
 
 1) odor_links.py
-# Opens text file "links" and extracts ODL file names
+# Opens text file "3038html.txt" and extracts ODL file names
 # Based on link starting with http and ending with .gz 
 '''
 ODL00000001_100-06-1.mol.gz
