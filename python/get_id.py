@@ -1,56 +1,33 @@
+# Opens text file "3038html.txt" and prints out ODL_cas# and pubchem_id (if it exists), 1 per line
+# Based on link with cgi and ending with .gz and being odorant (not receptor) 
 '''
+ODL00000001_100-06-1	7476
+ODL00000002_100-09-4	7478
+ODL00000003_100-42-5	7501
 '''
-#testfile = open("links")
-#line = testfile.readline()
 b = []
-#while line != '':
-for line in open("odoractorhtml_3038"):
+for line in open("3038html.txt"):
 	line = line.strip()
-	if line.find("cgi") != -1:
-		b.append(line)
-	if line != '':	
-		if((line[0] == 'h') and line[-1:] == 'z'):
-			if(line[46] == 'o'):
+	if line != '':	# avoids problems with checking blank lines after the strip()
+		if((line[0] == 'h') and line[-1:] == 'z'): # starts with http and ends with mol.gz
+			if(line[46] == 'o'): # only get odorant (not receptor)
 				b.append(line)
-match = set()
+	if line.find("cgi") != -1: #gets lines with the pubchem_id which comes after cgi
+		b.append(line)
 s = ""
 for piece in b:
-	cid = piece.find("cid=")
-	loc = piece.find("&loc")
-	odl = piece.find("ODL")
-	gz = piece.find("gz")
-	if cid != -1:#pubchem
-		s += piece[cid+4:loc]
-		match.add(s)
+	# ODL_cas# is http://mdl.shsmu.edu.cn/ODORCommon/datasource/odorant/mol/ODL00000010_100-86-7.mol.gz
+	# pubchem id is http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=7476&loc=ec_rcs
+	cid = piece.find("cid=") # pubchem_id starts after cid= 
+	loc = piece.find("&loc") # pubchem_id ends before &loc
+	odl = piece.find("ODL") # get index of ODL
+	gz = piece.find("gz") # get index of gz
+
+	if odl != -1: # ODL_cas# in this line
+		s += piece[odl:gz-5] # get from ODL and cut off the .mol.
+		s += '\t' # add a tab
+	else: #elif cid != -1: # piece has pubchem_id
+		s += piece[cid+4:loc] # get pubchem_id which starts 4 after cid and ends before loc
+		print s
 		s = ""
-	else:#odoractor
-		s += piece[odl:gz-5]
-		s += '\t'
 
-for m in match:
-	print m
-
-'''
-'''
-'''
-testfile = open("phix.fa")
-skip = testfile.readline() #skip first line
-a = testfile.readlines()
-b = []
-for i in a:
-	b.append(i.strip())
-t = ''.join(b)
-for letter in t:
-	print letter
-
-'''
-'''
-b = []
-testfile = open("reads.txt")
-for i in xrange(3600+1):
-	lin = testfile.readline()
-	if i == 3459:
-		b.append(lin.strip())
-t = ''.join(b)
-print t
-'''
