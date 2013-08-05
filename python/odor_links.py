@@ -8,7 +8,7 @@ ODL00000004_100-46-9.mol.gz
 '''
 
 b = []
-for line in open("links"):
+for line in open("3038html.txt"):
 	line = line.strip()
 	if line != '':	
 		if((line[0] == 'h') and line[-1:] == 'z'):
