@@ -1,4 +1,4 @@
-# Opens text file "3038html.txt" and prints out ODL_cas# and pubchem_id (if it exists), 1 per line
+# Opens text file "3038html.txt" and prints out ODL_cas# and pubchem_id (if it exists), 1 set per line
 # Based on link with cgi and ending with .gz and being odorant (not receptor) 
 '''
 ODL00000001_100-06-1	7476
