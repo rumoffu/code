@@ -1,10 +1,9 @@
-# Opens text file "links" and extracts ODL file names
+# Opens text file "links" and prints out ODL file links
 # Based on link starting with http and ending with .gz and being odorant (not receptor) 
 '''
-ODL00000001_100-06-1.mol.gz
-ODL00000002_100-09-4.mol.gz
-ODL00000003_100-42-5.mol.gz
-ODL00000004_100-46-9.mol.gz
+http://mdl.shsmu.edu.cn/ODORCommon/datasource/odorant/mol/ODL00000001_100-06-1.mol.gz
+http://mdl.shsmu.edu.cn/ODORCommon/datasource/odorant/mol/ODL00000002_100-09-4.mol.gz
+http://mdl.shsmu.edu.cn/ODORCommon/datasource/odorant/mol/ODL00000003_100-42-5.mol.gz
 '''
 
 b = []
