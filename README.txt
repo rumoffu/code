@@ -1,6 +1,3 @@
-html_parse
-==========
-
 #!/usr/bin/env python
 # Description
 '''
